@@ -27,9 +27,14 @@
 		}
 		return sum;
 	}
+	function getStatus() {
+		return ('Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' '));
+	}
 
 	var dealer = [getCard()];
 	var player = [getCard(), getCard()];
-	alert('Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' '));
+	while (getSum(player) < 21 && prompt(getStatus() + " Хотите еще карту? 1 - да, иначе - нет") == '1') {
+		player.push(getCard());
+	}
 	alert('Текущая сумма карт у игрока: ' + getSum(player));
 </script>
