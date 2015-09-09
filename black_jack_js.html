@@ -9,13 +9,20 @@
 	}
 	function getSum(arr) {
 		var sum = 0;
+		var ace = 0;
 		for (var i = 0; i < arr.length; i++) {
 			if (arr[i] == 'J' || arr[i] == 'Q' || arr[i] == 'K') {
 				sum = sum + 10;
 			} else if (arr[i] == 'A') {
 				sum = sum + 11;
+				ace++;
 			} else {
 				sum = sum + parseInt(arr[i]);
+			}
+		}
+		for (var i = 0; i < ace; i++) {
+			if (sum > 21) {
+				sum -= 10;
 			}
 		}
 		return sum;
