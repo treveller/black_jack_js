@@ -33,13 +33,36 @@
 
 	var dealer = [getCard()];
 	var player = [getCard(), getCard()];
-	while (getSum(player) < 21 && prompt(getStatus() + " Хотите еще карту? 1 - да, иначе - нет") == '1') {
-		player.push(getCard());
+	if (getSum(player) === 21) {
+		alert("Дьявольское везение! Black Jack на раздаче! " + getStatus());
+	} else {
+		while (prompt(getStatus() + " Хотите еще карту? 1 - да, иначе - нет") == '1') {
+			player.push(getCard());
+			if (getSum(player) === 21) {
+				alert("Black Jack! " + getStatus());
+				break;
+			} else if (getSum(player) > 21) {
+				alert("Перебор " + getStatus());
+				break;
+			}
+		}
 	}
-	if (getSum(player) > 21) {
-		alert("Перебор Т_Т");
-	} else if (getSum(player) === 21) {
-		alert("Black Jack! :P");
-	};
-	alert('Текущая сумма карт у игрока: ' + getSum(player));
+	var playerSum = getSum(player);
+	if (playerSum < 21) {
+		while (getSum(dealer) < 17) {
+			dealer.push(getCard());
+		} 
+		var dealerSum = getSum(dealer);
+		if (dealerSum === 21) {
+			alert("У дилера Black Jack! " + getStatus());
+		} else if (dealerSum > 21) {
+			alert("У дилера перебор, выигрыш! " + getStatus());
+		} else if (dealerSum === playerSum) {
+			alert("Ничья " + getStatus());
+		} else if (dealerSum < playerSum) {
+			alert("Выигрыш! " + getStatus());
+		} else if (dealerSum > playerSum) {
+			alert("Проигрыш " + getStatus());
+		}
+	}
 </script>
