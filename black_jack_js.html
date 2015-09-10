@@ -36,5 +36,10 @@
 	while (getSum(player) < 21 && prompt(getStatus() + " Хотите еще карту? 1 - да, иначе - нет") == '1') {
 		player.push(getCard());
 	}
+	if (getSum(player) > 21) {
+		alert("Перебор Т_Т");
+	} else if (getSum(player) === 21) {
+		alert("Black Jack! :P");
+	};
 	alert('Текущая сумма карт у игрока: ' + getSum(player));
 </script>
